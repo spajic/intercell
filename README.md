@@ -1,3 +1,192 @@
+## Setup app
+`rails new app --skip-coffee --skip-sprockets --webpack=react --database=postgresql -T`
+
+create file `browserlist.rc` containing `> 1%`
+
+in `application.rb`
+
+```ruby
+config.generators do |g|
+  g.system_tests    nil
+  g.test_framework  false
+  g.stylesheets     false
+  g.javascripts     false
+  g.helper          false
+  g.channel         assets: false
+end
+```
+
+```bash
+rm app/assets
+mv app/javascript frontend
+```
+
+```ruby
+# in application.html
+javascript_include_tag -> javascript_pack_tag # and move after yield yet
+stylesheet_include_tag -> stylesheet_pack_tag
+```
+
+```ruby
+# in config/webpacker.yml
+source_path: frontend
+
+# in application_controller
+prepend_view_path Rails.root.join('frontend')
+
+# in Procfile to use via Overmind
+server: bin/rails server
+assets: bin/webpack-dev-server
+```
+
+```javascript
+// package.json for eslint with airbnb, prettier, lint-staged, pre-commit, sytlelint for css, lint-staged hook
+{
+  "name": "app",
+  "private": true,
+  "dependencies": {
+    "@rails/webpacker": "^3.2.0",
+    "normalize.css": "^7.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.0.1",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^4.8.0",
+    "eslint-config-airbnb-base": "^12.0.1",
+    "eslint-config-prettier": "^2.6.0",
+    "eslint-import-resolver-webpack": "^0.8.3",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-prettier": "^2.3.1",
+    "lint-staged": "^4.2.3",
+    "pre-commit": "^1.2.2",
+    "prettier": "^1.7.3",
+    "stylelint": "^8.1.1",
+    "stylelint-config-standard": "^17.0.0",
+    "webpack-dev-server": "^2.9.1"
+  },
+  "scripts": {
+    "lint-staged": "$(yarn bin)/lint-staged"
+  },
+  "lint-staged": {
+    "config/webpack/**/*.js": [
+      "prettier --write",
+      "eslint",
+      "git add"
+    ],
+    "frontend/**/*.js": [
+      "prettier --write",
+      "eslint",
+      "git add"
+    ],
+    "frontend/**/*.css": [
+      "prettier --write",
+      "stylelint --fix",
+      "git add"
+    ]
+  },
+  "pre-commit": [
+    "lint-staged"
+  ]
+}
+
+```
+
+```javascript
+// .eslintrc
+{
+  "extends": ["eslint-config-airbnb-base", "prettier"],
+
+  "plugins": ["prettier"],
+
+  "env": {
+    "browser": true
+  },
+
+  "rules": {
+    "prettier/prettier": "error"
+  },
+
+  "parser": "babel-eslint",
+
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": {
+          "resolve": {
+            "modules": ["frontend", "node_modules"]
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+```javascript
+// .stylelintrc
+{
+  "extends": "stylelint-config-standard"
+}
+```
+
+
+```bash
+rails g controller pages home
+```
+
+```ruby
+# in routes
+root to: 'pages#home'
+```
+
+```javascript
+// in frontend/packs/application.js
+import "init";
+import "components/page/page";
+
+// in frontend/init/index.js
+import "./index.css";
+```
+
+```css
+/* frontend/init/index.css */
+@import "normalize.css/normalize.css";
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+}
+```
+
+```bash
+$ mkdir -p frontend/components/page
+$ touch frontend/components/page/{_page.html.erb,page.css,page.js}
+```
+
+```javascript
+// in page.js
+import "./page.css";
+```
+
+```css
+.page {
+  height: 100vh;
+  width: 700px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+```
+
+```erb
+# page.html.erb
+<div class="page">
+  <%= yield %>
+</div>
+```
+
+
 ## Resources
 
 ### Github

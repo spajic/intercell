@@ -1,0 +1,13 @@
+/app/.bundle
+
+# Ignore all logfiles and tempfiles.
+/app/log/*
+/app/tmp/*
+
+/app/node_modules
+/app/yarn-error.log
+
+/app/.byebug_history
+/app/public/packs
+/app/public/packs-test
+/app/node_modules
