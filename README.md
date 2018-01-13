@@ -1,6 +1,7 @@
 ## Resources
 
 ### Github
+- https://github.com/rails/webpacker
 - https://github.com/shakacode/react_on_rails
 - https://github.com/reactjs/react-rails
 - https://github.com/airbnb/hypernova
