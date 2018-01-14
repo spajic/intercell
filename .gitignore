@@ -11,3 +11,5 @@
 /app/public/packs
 /app/public/packs-test
 /app/node_modules
+
+/app/.overmind.sock
