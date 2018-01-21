@@ -199,6 +199,10 @@ import "./page.css";
 - https://github.com/prerender/prerender Node server that uses Headless Chrome to render a javascript-rendered page as HTML. To be used in conjunction with prerender middleware.
 - https://github.com/prerender/prerender_rails Rails middleware gem for prerendering javascript-rendered pages on the fly for SEO
 
+### Cells
+- https://github.com/trailblazer/cells
+- http://trailblazer.to/gems/cells
+
 ### Evil-front
 - https://evilmartians.com/chronicles/evil-front-part-1
 - https://evilmartians.com/chronicles/evil-front-part-2
