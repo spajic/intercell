@@ -202,6 +202,8 @@ import "./page.css";
 ### Cells
 - https://github.com/trailblazer/cells
 - http://trailblazer.to/gems/cells
+- https://github.com/trailblazer/cells-rails
+- https://github.com/trailblazer/cells-slim
 
 ### Evil-front
 - https://evilmartians.com/chronicles/evil-front-part-1
