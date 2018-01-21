@@ -1,0 +1,13 @@
+.message
+  .message--header
+    span.message--author
+      = message.author
+    span.message--time
+      - if message.created_at > Time.now - 24.hours
+        = l(message.created_at, format: :short)
+      - else
+        = l(message.created_at, format: :long)
+
+  .message--text
+    - message.text.lines.each do |line|
+      p = line

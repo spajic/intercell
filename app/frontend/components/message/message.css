@@ -16,6 +16,7 @@
   &--time {
     color: rgba(0, 0, 0, 0.5);
     font-size: 12px;
+    margin: 6px;
   }
 
   &--text p {
