@@ -1,5 +1,5 @@
 import { setCallback } from "client/chat";
-import "components/message/message";
+import "../message/message";
 import "./messages.css";
 
 const messages = document.querySelector(".js-messages");

@@ -18,6 +18,6 @@ class ChatChannel < ApplicationCable::Channel
   private
 
   def render(message)
-    ApplicationController.new.helpers.c("message", message: message)
+    MessageCell.new(message).show
   end
 end

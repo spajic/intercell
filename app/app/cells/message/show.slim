@@ -1,7 +1,7 @@
 .message
   .message--header
     span.message--author
-      = message.author
+      = sanitize(message.author)
     span.message--time
       - if message.created_at > Time.now - 24.hours
         = l(message.created_at, format: :short)
@@ -10,4 +10,4 @@
 
   .message--text
     - message.text.lines.each do |line|
-      p = line
+      p = sanitize(line)

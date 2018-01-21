@@ -1,0 +1,2 @@
+class PageCell < Intercell
+end
