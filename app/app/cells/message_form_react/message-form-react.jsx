@@ -1,8 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
 import { sendMessage } from "client/chat";
-
 import "./message-form-react.css";
 
 const container = document.querySelector(".js-message-form-react");
@@ -34,12 +32,13 @@ function MessageForm() {
     <textarea
       onKeyDown={onKeyDown}
       className="message-form-react--input js-message-form-react--input"
+      autofocus="true"
     />,
     <button
       onClick={handleSubmit}
       className="message-form-react--submit js-message-form-react--submit"
     >
-      Submit
+      Send
     </button>
   ];
 }
